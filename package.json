@@ -1,0 +1,20 @@
+{
+  "name": "wallet-analyzer",
+  "version": "1.0.0",
+  "description": "A blockchain wallet analyzer",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "axios": "^0.21.4",
+    "body-parser": "^1.20.3",
+    "cli-progress": "^3.12.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.21.0",
+    "web3": "^4.12.1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
