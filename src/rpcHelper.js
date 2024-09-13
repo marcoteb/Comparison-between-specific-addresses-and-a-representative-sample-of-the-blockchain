@@ -17,6 +17,7 @@ const getCurrentBlock = async () => {
     }
 };
 
+// Fetch the transaction count for a specific address
 const getTransactionCountForAddress = async (address, retries = 3) => {
     try {
         const response = await axios.post(process.env.RPC_URL, {
@@ -37,6 +38,7 @@ const getTransactionCountForAddress = async (address, retries = 3) => {
     }
 };
 
+// Fetch the balance for a specific address
 const getBalanceForAddress = async (address, retries = 3) => {
     try {
         const response = await axios.post(process.env.RPC_URL, {
@@ -56,6 +58,7 @@ const getBalanceForAddress = async (address, retries = 3) => {
         }
     }
 };
+
 // Fetch the number of transactions in a specific block
 const getTransactionCountInBlock = async (blockNumber, retries = 3) => {
     try {
