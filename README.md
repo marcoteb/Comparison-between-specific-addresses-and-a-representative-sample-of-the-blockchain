@@ -48,9 +48,11 @@ npm install
 Create a `.env` file in the project root directory. Define the following environment variables:
 
 ```bash
+BLOCKSCOUT_API=//your-blockscout-api
+SCROLLSCAN_API=//your-scan-api
 RPC_URL=https://your-ethereum-rpc-url
 SCAN_API=https://api.etherscan.io/api
-SCAN_API_KEY=your-etherscan-api-key
+API_KEY_SCROLL=your-etherscan-api-key
 PORT=3000
 populationSize=1000000
 confidenceLevel=95
@@ -58,8 +60,9 @@ marginOfError=0.05
 USE_BLOCKSCOUT=true
 ```
 
+- `BLOCKSCOUT_API`:Blockscout api URL
 - `RPC_URL`: The Ethereum node RPC endpoint.
-- `SCAN_API`: The base URL for the Scan API (e.g., Etherscan).
+- `SCROLLSCAN_API`: The base URL for the Scan API (e.g., Etherscan).
 - `SCAN_API_KEY`: Your Scan API key.
 - `PORT`: The port on which the server will run.
 - `populationSize`: Estimated total number of active Ethereum addresses.
