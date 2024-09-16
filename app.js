@@ -20,27 +20,27 @@ const confidenceLevel = parseInt(process.env.confidenceLevel);
 const marginOfError = parseFloat(process.env.marginOfError);
 const useBlockscout = process.env.USE_BLOCKSCOUT === 'true';
 
-// Variable global para almacenar los percentiles calculados
+// Global variable to store the calculated percentiles
 let blockchainPercentiles = {};
 
-// Función para calcular percentiles para todas las wallets analizadas
+// Function to calculate percentiles for all analyzed wallets
 const calculateAndStorePercentiles = (walletData) => {
     const metrics = ['transaction_count_rpc', 'balance', 'total_received', 'total_sent', 'total_fees', 'transaction_count_api', 'contract_interactions'];
     const percentiles = {};
 
-    // Calcula los percentiles y los guarda en blockchainPercentiles
+    // Calculate the percentiles and store them in blockchainPercentiles
     metrics.forEach((metric) => {
         const metricValues = walletData.map(wallet => parseFloat(wallet[metric]));
         const sortedValues = metricValues.slice().sort((a, b) => a - b);
-        percentiles[metric] = sortedValues;  // Almacenar los valores ordenados
+        percentiles[metric] = sortedValues;  // Store the sorted values
     });
 
-    blockchainPercentiles = percentiles; // Guardar los percentiles globalmente
+    blockchainPercentiles = percentiles; // Store the percentiles globally
 
-    // Imprimir los percentiles en la consola
-    console.log("\nPercentiles calculados para las wallets aleatorias:");
+    // Print the percentiles in the console
+    console.log("\nPercentiles calculated for the random wallets:");
     metrics.forEach((metric) => {
-        console.log(`\nPercentiles para ${metric}:`);
+        console.log(`\nPercentiles for ${metric}:`);
         blockchainPercentiles[metric].forEach((value, index) => {
             const percentile = ((index + 1) / blockchainPercentiles[metric].length) * 100;
             console.log(`${percentile.toFixed(2)}%: ${value}`);
@@ -48,7 +48,7 @@ const calculateAndStorePercentiles = (walletData) => {
     });
 };
 
-// Función para intentar indefinidamente si el API no devuelve resultados
+// Function to retry indefinitely if the API does not return results
 const fetchTransactionDataWithRetries = async (address, retries = retriesLimit) => {
     let success = false;
     let transactionData;
@@ -144,13 +144,13 @@ const analyzeWallets = async () => {
 
     console.log("Collected Wallet Data:", analyzedWallets);
 
-    // Almacenar los percentiles calculados e imprimirlos en la consola
+    // Store the calculated percentiles and print them in the console
     calculateAndStorePercentiles(analyzedWallets);
 
     return analyzedWallets;
 };
 
-// Función para obtener el percentil de una wallet con respecto a la blockchain
+// Function to get the percentile of a wallet for a specific metric
 const getPercentileForMetric = (value, sortedValues) => {
     const rank = sortedValues.filter(v => v <= value).length;
     const percentile = (rank / sortedValues.length) * 100;
@@ -201,18 +201,18 @@ app.post('/analyze-wallets', async (req, res) => {
     res.send(JSON.stringify({ results }, null, 2)); // Formatted JSON output
 });
 
-// Ejecutar el análisis de wallets aleatorias y calcular percentiles
+// Run the analysis of random wallets and calculate percentiles
 const runAnalysis = async () => {
     const walletData = await analyzeWallets();
 
     if (walletData && walletData.length > 0) {
-        console.log("Percentiles calculados y almacenados.");
+        console.log("Percentiles calculated and stored.");
     } else {
-        console.error("No se encontraron datos de wallets para calcular los percentiles.");
+        console.error("No wallet data found to calculate percentiles.");
     }
 };
 
-// Cargar y ejecutar el análisis inicial, luego iniciar la API
+// Load and run the initial analysis, then start the API
 runAnalysis().then(() => {
     app.listen(port, () => {
         console.log(`API is running on port ${port}`);
