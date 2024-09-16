@@ -1,12 +1,12 @@
 const { fetchBlockscoutTransactions, fetchScrollscanTransactions } = require('./fetchTransactions');
 const { getTransactionCountForAddress, getBalanceForAddress } = require('./rpcHelper');
 
-// Analizar una sola wallet
+// Analyze a single wallet
 const analyzeWallet = async (address) => {
    const transactionCountRPC = await getTransactionCountForAddress(address);
    const balance = await getBalanceForAddress(address);
 
-   const transactionData = await fetchBlockscoutTransactions(address); // O fetchScrollscanTransactions según el caso.
+   const transactionData = await fetchBlockscoutTransactions(address); // Or fetchScrollscanTransactions depending on the case.
 
    return {
       transaction_count_rpc: transactionCountRPC,
