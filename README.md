@@ -63,7 +63,7 @@ USE_BLOCKSCOUT=true
 - `BLOCKSCOUT_API`:Blockscout api URL
 - `RPC_URL`: The Ethereum node RPC endpoint.
 - `SCROLLSCAN_API`: The base URL for the Scan API (e.g., Etherscan).
-- `SCAN_API_KEY`: Your Scan API key.
+- `API_KEY_SCROLL`: Your Scan API key.
 - `PORT`: The port on which the server will run.
 - `populationSize`: Estimated total number of active Ethereum addresses.
 - `confidenceLevel`: Confidence level for statistical sampling (e.g., 95%).
