@@ -1,10 +1,10 @@
 const calculateAndPrintPercentiles = (walletData) => {
     const metrics = ['transaction_count_rpc', 'balance', 'total_received', 'total_sent', 'total_fees', 'transaction_count_api', 'contract_interactions'];
 
-    // Calcular percentiles para cada métrica
+    // Calculate percentiles for each metric
     metrics.forEach((metric) => {
         const metricValues = walletData.map(wallet => parseFloat(wallet[metric]));
-        const sortedValues = metricValues.slice().sort((a, b) => a - b); // Ordenar de menor a mayor
+        const sortedValues = metricValues.slice().sort((a, b) => a - b); // Sort from lowest to highest
 
         console.log(`Percentiles for ${metric}:`);
         sortedValues.forEach((value, index) => {
@@ -14,4 +14,4 @@ const calculateAndPrintPercentiles = (walletData) => {
     });
 };
 
-module.exports = { calculateAndPrintPercentiles }; // Exportar correctamente la función
+module.exports = { calculateAndPrintPercentiles }; 
